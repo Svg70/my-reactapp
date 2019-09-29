@@ -1,0 +1,9 @@
+.content{
+    grid-area: c;
+    height: 100vh;
+    background-color: rgb(249, 251, 152);
+}
+.photo{
+    height: 210px;
+    width: 100%;
+}
