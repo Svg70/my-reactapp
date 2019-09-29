@@ -1,0 +1,31 @@
+
+.postWrapper{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    
+}
+.ava img{
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+}
+.innerWrapper{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.postHeader{
+    display: flex;
+    
+}
+.date{
+    margin-left: 20px;
+}
+.postfooter{
+    display: flex;
+    justify-content: space-around;
+}
+.nickName{
+    font-weight: bold;
+}
