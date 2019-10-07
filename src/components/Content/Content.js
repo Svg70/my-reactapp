@@ -2,6 +2,17 @@ import React from 'react';
 import styles from './Content.module.css';
 import Post from './Post/Post';
 
+
+
+let posts=[
+    {name:'Петр Петров', id: 1, like: 40},
+    {name:'Иван Иванов', id: 1, like: 2},
+    {name:'Дед Мазай ', id: 1, like: 5},
+    {name:'Сеня Круглый', id: 1, like: 1},
+    {name:'Петр Петров', id: 1, like: 0}
+]
+
+let postsArray = posts.map(p => <Post name = {p.name} id ={p.id} like = {p.like}/>)
 const Content = () => {
     return (
         <div>
@@ -10,11 +21,8 @@ const Content = () => {
             </div>
             <div>Мои посты</div>
             <textarea>Введите пост</textarea>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
+            <button>Добавить новый пост</button>
+            {postsArray}
             
         </div>
     )  

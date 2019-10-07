@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Post.module.css';
 
 
-const Post = () => {
+const Post = (props) => {
     return (
         <div className={styles.postWrapper}>
             <div className={styles.ava}>
@@ -11,7 +11,7 @@ const Post = () => {
             <div className={styles.innerWrapper}>
                 <div className={styles.postHeader}>
                 <div className={styles.nickName}>
-                    Петр Петров
+                    {props.name}
                 </div>
                 <div className={styles.date}>
                     11.11.2019 11:11:22
@@ -22,7 +22,8 @@ const Post = () => {
             </div>
                 <div className={styles.postfooter}>
                     <div className={styles.like}>
-                        Like
+                        Like: 
+                        <span>{props.like}</span>
             </div>
                     <div className={styles.replay}>
                         <button>Ответить</button>
