@@ -1,4 +1,4 @@
-import {rerenderEntireTree} from './../render'
+
 let state = {
     profilePage:{
         posts:[
@@ -26,7 +26,9 @@ let state = {
     ]}
 }
 
-
+let rerenderEntireTree = ()=>{
+    
+}
 export let addPost =(newPostText) =>  {
     debugger
     let newPost = {
@@ -42,6 +44,10 @@ export let onTextAreaChange = (newPostText) => {
     let postChanges = newPostText
     state.profilePage.newPostText = postChanges
     rerenderEntireTree(state)
+}
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer
 }
 
 export default state
