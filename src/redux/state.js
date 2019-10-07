@@ -1,3 +1,4 @@
+import {rerenderEntireTree} from './../render'
 let state = {
     profilePage:{
         posts:[
@@ -7,7 +8,9 @@ let state = {
         {name:'Сеня Круглый', id: 1, like: 1, postText:"To be or not to be?"},
         {name:'Петр Петров', id: 1, like: 0, postText:"To be or not to be?"},
         {name:'Павел Сорокин', id: 1, like: 0, postText:"To be or not to be?"}
-    ]},
+        ],
+        newPostText: "Write your post here!"
+    },
     dialogsPage:{
         dialogsItems:[
         {id: 1, name: "Серега"},
@@ -22,4 +25,23 @@ let state = {
         {id: 6, message: "When will you learn React?"}
     ]}
 }
+
+
+export let addPost =(newPostText) =>  {
+    debugger
+    let newPost = {
+        id:1,
+        postText: newPostText,
+        name: 'Борис Гребенщиков',
+        like: 0
+    }
+    state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
+}
+export let onTextAreaChange = (newPostText) => {
+    let postChanges = newPostText
+    state.profilePage.newPostText = postChanges
+    rerenderEntireTree(state)
+}
+
 export default state

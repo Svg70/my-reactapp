@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import Dialogs from './components/Dialogs/Dialogs';
 import { BrowserRouter, Route } from "react-router-dom";
-import { tsPropertySignature } from '@babel/types';
+
 const App = (props) => {
   return (
     <BrowserRouter>
@@ -14,7 +14,8 @@ const App = (props) => {
         <Header />
         <Sidebar />
         <div className='app-wrapper-content'>
-          <Route path='/profile' render = {() => <Content profilePage = {props.state.profilePage}/>} />
+          <Route path='/profile' render = {() => <Content profilePage = {props.state.profilePage} 
+          addPost = {props.addPost} onTextAreaChange ={props.onTextAreaChange}/>} />
           <Route path='/dialogs' render = {() => <Dialogs dialogsPage = {props.state.dialogsPage}/>} />
         </div>
       </div>
