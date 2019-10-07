@@ -4,16 +4,11 @@ import Post from './Post/Post';
 
 
 
-let posts=[
-    {name:'Петр Петров', id: 1, like: 40},
-    {name:'Иван Иванов', id: 1, like: 2},
-    {name:'Дед Мазай ', id: 1, like: 5},
-    {name:'Сеня Круглый', id: 1, like: 1},
-    {name:'Петр Петров', id: 1, like: 0}
-]
 
-let postsArray = posts.map(p => <Post name = {p.name} id ={p.id} like = {p.like}/>)
-const Content = () => {
+
+
+const Content = (props) => {
+    let postsArray = props.profilePage.posts.map(p => <Post name = {p.name} id ={p.id} like = {p.like} postText ={p.postText}/>)
     return (
         <div>
             <div>

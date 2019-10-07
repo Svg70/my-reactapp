@@ -18,7 +18,7 @@ const Post = (props) => {
                 </div>
                 </div>
                 <div className={styles.messageText}>
-                    Жизнь моя жестянка!
+                    {props.postText}
             </div>
                 <div className={styles.postfooter}>
                     <div className={styles.like}>
