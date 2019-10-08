@@ -1,22 +1,23 @@
 
 import * as serviceWorker from './serviceWorker';
-import state, {subscribe} from './redux/state';
+import store from './redux/state';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
 
-import {addPost, onTextAreaChange} from './redux/state';
 
-export let rerenderEntireTree = (state) => {
 
-ReactDOM.render(<App state ={state} addPost={addPost} onTextAreaChange= {onTextAreaChange}/>, document.getElementById('root'));
+let rerenderEntireTree = () => {
+
+ReactDOM.render(<App state ={store.getState()} addPost={store.addPost.bind(store)} 
+onTextAreaChange= {store.onTextAreaChange.bind(store)}/>, document.getElementById('root'));
 }
 
 
-rerenderEntireTree(state)
-subscribe(rerenderEntireTree)
+rerenderEntireTree(store.getState())
+store.subscribe(rerenderEntireTree)
 
 
 
