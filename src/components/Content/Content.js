@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Content.module.css';
 import Post from './Post/Post';
+import { addPostAC, onTextAreaChangeAC } from '../../redux/state';
 
 
 
@@ -12,15 +13,13 @@ const Content = (props) => {
     
     let newPostRef = React.createRef()
     let addPost = () =>{
-
-        let newPostText = newPostRef.current.value
-        props.addPost(newPostText)
+        props.dispatch(addPostAC())
         
     }
 
     let onTextAreaChange = () => {
         let newText = newPostRef.current.value
-        props.onTextAreaChange(newText)
+        props.dispatch(onTextAreaChangeAC(newText))
     }
     
     return (

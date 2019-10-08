@@ -15,8 +15,9 @@ const App = (props) => {
         <Sidebar />
         <div className='app-wrapper-content'>
           <Route path='/profile' render = {() => <Content profilePage = {props.state.profilePage} 
-          addPost = {props.addPost} onTextAreaChange ={props.onTextAreaChange}/>} />
-          <Route path='/dialogs' render = {() => <Dialogs dialogsPage = {props.state.dialogsPage}/>} />
+          dispatch ={props.dispatch}/>} />
+          <Route path='/dialogs' render = {() => <Dialogs dialogsPage = {props.state.dialogsPage}
+          dispatch ={props.dispatch}/>} />
         </div>
       </div>
     </BrowserRouter>
