@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Content.module.css';
 import Post from './Post/Post';
-import { addPostAC, onTextAreaChangeAC } from '../../redux/state';
+import { addPostAC, onTextAreaChangeAC } from '../../redux/profile-reducer';
 
 
 

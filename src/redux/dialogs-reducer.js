@@ -21,4 +21,12 @@ let dialogsReducer = (dialogsPage, action)=>{
     }
     return dialogsPage
 }  
+
+
+export const addMessageAC = () =>{
+    return {type:'ADD_MESSAGE'}
+}
+export const onMessageTextAreaChangeAC = (newMessage) =>{
+    return {type:'MESSAGE_AREA_CHANGE', text: newMessage}
+}
 export default dialogsReducer

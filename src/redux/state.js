@@ -52,16 +52,6 @@ let store = {
         }
 
 }
-export const addPostAC = () =>{
-    return {type:'ADD_POST'}
-}
-export const onTextAreaChangeAC = (newText) =>{
-    return {type:'TEXT_AREA_CHANGE', t: newText}
-}
-export const addMessageAC = () =>{
-    return {type:'ADD_MESSAGE'}
-}
-export const onMessageTextAreaChangeAC = (newMessage) =>{
-    return {type:'MESSAGE_AREA_CHANGE', text: newMessage}
-}
+
+
 export default store

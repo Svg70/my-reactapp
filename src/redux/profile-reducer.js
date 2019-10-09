@@ -19,4 +19,12 @@ let profileReducer = (profilePage, action) => {
     }
     return profilePage
 }
+
+export const addPostAC = () =>{
+    return {type:'ADD_POST'}
+}
+export const onTextAreaChangeAC = (newText) =>{
+    return {type:'TEXT_AREA_CHANGE', t: newText}
+}
+
 export default profileReducer
