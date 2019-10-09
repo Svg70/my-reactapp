@@ -1,3 +1,5 @@
+import profileReducer from "./profile-reducer"
+import dialogsReducer from "./dialogs-reducer"
 
 let store = {
      _state: {
@@ -43,45 +45,12 @@ let store = {
         this._callSubscriber = observer
     },
     dispatch(action){
-        switch(action.type){
-            case('ADD_POST'):
-            let newPost = {
-                id: 1,
-                postText: this._state.profilePage.newPostText,
-                name: 'Борис Гребенщиков',
-                like: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ""
-            this._callSubscriber(this._state)
-            break;
-            case('TEXT_AREA_CHANGE'):
-            
-            this._state.profilePage.newPostText = action.t
-            this._callSubscriber(this._state)
-            break;
-            case ('MESSAGE_AREA_CHANGE'):
-            this._state.dialogsPage.defaultMessage = action.text
-            this._callSubscriber(this._state)
-
-
-            break;
-            case ('ADD_MESSAGE'):
-                let newMessage={
-                    id: 1,
-                    message: this._state.dialogsPage.defaultMessage
-                }
-                this._state.dialogsPage.messages.push(newMessage)
-                this._state.dialogsPage.defaultMessage = ""
-                this._callSubscriber(this._state)
-
-
-            
-            break;
-            default:
-                break
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        
+        this._callSubscriber(this._state)     
         }
-    }  
+
 }
 export const addPostAC = () =>{
     return {type:'ADD_POST'}
