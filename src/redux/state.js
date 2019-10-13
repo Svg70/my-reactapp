@@ -2,7 +2,7 @@ import profileReducer from "./profile-reducer"
 import dialogsReducer from "./dialogs-reducer"
 
 let store = {
-     _state: {
+    _state: {
         profilePage: {
             posts: [
                 { name: 'Петр Петров', id: 1, like: 40, postText: "To be or not to be?" },
@@ -34,22 +34,18 @@ let store = {
     _callSubscriber() {
 
     },
-
-    getState(){
+    getState() {
         return this._state
     },
-
-
-
-    subscribe(observer){
+    subscribe(observer) {
         this._callSubscriber = observer
     },
-    dispatch(action){
+    dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        
-        this._callSubscriber(this._state)     
-        }
+
+        this._callSubscriber(this._state)
+    }
 
 }
 
