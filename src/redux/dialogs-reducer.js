@@ -20,7 +20,7 @@ let dialogsReducer = (dialogsPage = initialstate, action) => {
         case ('MESSAGE_AREA_CHANGE'):{
             let dialogsPageCopy = {...dialogsPage, messages: dialogsPage.messages}
             dialogsPageCopy.defaultMessage = action.text
-            debugger
+            
             return dialogsPageCopy}
         case ('ADD_MESSAGE'):{
             let newMessage = {

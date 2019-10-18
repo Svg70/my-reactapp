@@ -17,7 +17,7 @@ let usersReducer = (state = initialstate, action) => {
             return newState
         }
         case ('UNFOLLOW'): {
-            debugger
+            
             let newState = { ...state };
             newState.users = [ ...state.users ];
             newState.users.map(e => { if (e.id === action.num) {return e.followed = true } else {return e } });

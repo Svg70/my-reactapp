@@ -4,7 +4,7 @@ import store from '../../../redux/redux-store'
 import {connect} from 'react-redux';
 import { setStateAC, followAC, unfollowAC } from '../../../redux/users-reducer';
 const mapStateToProps = (store) => {
-    debugger
+    
     
     return { usersPage: store.usersPage }
 }
