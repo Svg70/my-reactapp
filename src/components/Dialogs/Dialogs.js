@@ -7,12 +7,10 @@ const DialogsItem = (props) => {
         <div><NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink></div>
     )
 }
+
 const Message = (props) => {
     return <div>{props.message}</div>
 }
-
-
-
 
 const Dialogs = (props) => {
 
@@ -21,6 +19,7 @@ const Dialogs = (props) => {
 
     let messageTextAreaValue = React.createRef()
     let onMessageTextAreaChange = () => {
+        
         let newMessage = messageTextAreaValue.current.value
         props.onMessageTextAreaChange(newMessage)
     }

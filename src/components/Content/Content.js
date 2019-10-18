@@ -13,7 +13,7 @@ const Content = (props) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer profilePage ={props.profilePage} dispatch = {props.dispatch}/>
+            <MyPostsContainer /*profilePage ={props.profilePage} dispatch = {props.dispatch}*//>
             
         </div>
     )  

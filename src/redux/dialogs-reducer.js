@@ -17,21 +17,26 @@ let initialstate = {
 
 let dialogsReducer = (dialogsPage = initialstate, action) => {
     switch (action.type) {
-        case ('MESSAGE_AREA_CHANGE'):
-            dialogsPage.defaultMessage = action.text
-            break;
-        case ('ADD_MESSAGE'):
+        case ('MESSAGE_AREA_CHANGE'):{
+            let dialogsPageCopy = {...dialogsPage, messages: dialogsPage.messages}
+            dialogsPageCopy.defaultMessage = action.text
+            debugger
+            return dialogsPageCopy}
+        case ('ADD_MESSAGE'):{
             let newMessage = {
                 id: 1,
                 message: dialogsPage.defaultMessage
             }
-            dialogsPage.messages.push(newMessage)
-            dialogsPage.defaultMessage = ""
-            break;
+            let dialogsPageCopy = {...dialogsPage, messages: dialogsPage.messages}
+            dialogsPageCopy.messages.push(newMessage)
+            dialogsPageCopy.defaultMessage = ""
+            debugger
+            return dialogsPageCopy
+        }
         default:
-            break
+                return dialogsPage    
     }
-    return dialogsPage
+    
 }
 
 

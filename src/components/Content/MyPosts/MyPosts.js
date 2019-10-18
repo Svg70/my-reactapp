@@ -16,7 +16,6 @@ const MyPosts = (props) => {
 
     let postsArray = props.profilePage.posts.map(p => 
     <Post name = {p.name} id ={p.id} like = {p.like} postText ={p.postText}/>)
-
     return <div>
         <div>Мои посты</div>
             <textarea ref = {newPostRef} 
