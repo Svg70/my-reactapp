@@ -14,9 +14,7 @@ const Sidebar = () => {
             <div className={styles.item}>
                 <NavLink to='/users'>Users</NavLink>
             </div>
-            <div className={styles.item}>
-                <a>Content</a>
-            </div>
+
         </div>
     );
 }

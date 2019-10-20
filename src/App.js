@@ -11,6 +11,7 @@ import Users from './components/Content/Users/Users';
 import UsersContainer from './components/Content/Users/UsersContainer';
 
 const App = (props) => {
+ 
   return (
     
       <div className='app-wrapper'>
@@ -21,7 +22,7 @@ const App = (props) => {
           dispatch ={props.store.dispatch}*//>} />
           <Route path='/dialogs' render = {() => <DialogsContainer /*dialogsPage = {props.store.state.dialogsPage}
           dispatch ={props.dispatch}*//>} />
-          <Route exact path = '/users' render ={()=><UsersContainer/>}/>
+          <Route  path = '/users' render ={()=><UsersContainer/>}/>
         </div>
       </div>
     

@@ -11,7 +11,7 @@ import {BrowserRouter} from 'react-router-dom'
 
 
 
-let rerenderEntireTree = () => {
+// let rerenderEntireTree = () => {
 
 ReactDOM.render(
 <BrowserRouter>
@@ -21,9 +21,9 @@ ReactDOM.render(
 </Provider>
 </BrowserRouter>,
  document.getElementById('root'));
-}
-
-rerenderEntireTree(store.getState())
+// }
+// debugger
+// rerenderEntireTree(store.getState())
 
 // store.subscribe(()=>{
 //     let state = store.getState();
