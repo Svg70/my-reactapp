@@ -19,6 +19,7 @@ import {connect} from 'react-redux';
     const mapStateToProps = (store) => {
         return{
             profilePage: store.profilePage
+            
         }
     }
     const mapDispatchToProps = (dispatch) => {

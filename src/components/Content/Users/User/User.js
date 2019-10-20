@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './User.module.css'
-import Girl from './../../../assets/images/girl.png'
-import anotherGirl from './../../../assets/images/anotherGirl.png'
+import Girl from './../../../../assets/images/girl.png'
+import anotherGirl from './../../../../assets/images/anotherGirl.png'
 
 
 const User = (props)=>{

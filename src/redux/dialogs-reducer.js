@@ -30,7 +30,7 @@ let dialogsReducer = (dialogsPage = initialstate, action) => {
             let dialogsPageCopy = {...dialogsPage, messages: dialogsPage.messages}
             dialogsPageCopy.messages.push(newMessage)
             dialogsPageCopy.defaultMessage = ""
-            debugger
+            
             return dialogsPageCopy
         }
         default:

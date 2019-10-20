@@ -21,7 +21,7 @@ const App = (props) => {
           dispatch ={props.store.dispatch}*//>} />
           <Route path='/dialogs' render = {() => <DialogsContainer /*dialogsPage = {props.store.state.dialogsPage}
           dispatch ={props.dispatch}*//>} />
-          <Route path = '/users' render ={()=><UsersContainer/>}/>
+          <Route exact path = '/users' render ={()=><UsersContainer/>}/>
         </div>
       </div>
     
