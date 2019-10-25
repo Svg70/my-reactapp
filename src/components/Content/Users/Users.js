@@ -3,7 +3,8 @@ import User from './User/User'
 
 import styles from './Users.module.css'
 
-const Users = (props) => {
+let Users = (props) => {
+    
         let pageIdentificators = Math.ceil(props.usersPage.totalUsersCount / props.usersPage.pageSize)
         let pageArray = []
         for (let i = 1; i <= pageIdentificators; i++) {
@@ -15,6 +16,7 @@ const Users = (props) => {
         let usersArray = props.usersPage.users.map(e => <User key={e.id}
             e={e} follow={props.follow} unfollow={props.unfollow} />)
         return (<div>
+            
             {arr}
             {usersArray}
         </div>)

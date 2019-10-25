@@ -2,26 +2,27 @@ let initialstate = {
     users: [
 
     ],
-    totalUsersCount: 20,
+    totalUsersCount: 0,
     pageSize: 100,
-    currentPage: 1
+    currentPage: 1,
+    preloader: false
 }
 
 let usersReducer = (state = initialstate, action) => {
   
     switch (action.type) {
         case ('FOLLOW'): {
-            
+           
             let newState = { ...state };
             newState.users = [ ...state.users ];
-            newState.users.map(e => { if (e.id === action.num) { return e.followed = false } else {return e } });
+            newState.users.map(e => { if (e.id === action.num) { return e.followed = true } else {return e } });
             return newState
         }
         case ('UNFOLLOW'): {
-            
+           
             let newState = { ...state };
             newState.users = [ ...state.users ];
-            newState.users.map(e => { if (e.id === action.num) {return e.followed = true } else {return e } });
+            newState.users.map(e => { if (e.id === action.num) {return e.followed = false } else {return e } });
             return newState;
         }
         case('SET_TOTAL_USERS_COUNT'):{
@@ -30,6 +31,7 @@ let usersReducer = (state = initialstate, action) => {
             return newState
         }
         case ('SET_STATE'):{
+           
             let newState = {...state};
             newState.users = [...state.users];
             newState.users = action.state
@@ -37,8 +39,12 @@ let usersReducer = (state = initialstate, action) => {
         }
 
         case ('PAGINATOR_CHANGED'):
+        
             return { ...state, currentPage: action.currentPage}
 
+        case ('PRELOADER_SHOW'):
+                
+        return{...state,preloader: !state.preloader}
         default:
             return state
     }
@@ -58,5 +64,8 @@ export const setTotalCountAC = (totalCount) => {
 }
 export const paggianatorChangedAC = (d) => {
     return{type:'PAGINATOR_CHANGED', currentPage: d}
+}
+export const preloaderChangedAC = () =>{
+    return{type: 'PRELOADER_SHOW'}
 }
 export default usersReducer

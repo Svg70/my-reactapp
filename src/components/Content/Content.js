@@ -12,7 +12,7 @@ const Content = (props) => {
    
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo photo={props.photo} fullName={props.fullName}/>
             <MyPostsContainer /*profilePage ={props.profilePage} dispatch = {props.dispatch}*//>
             
         </div>

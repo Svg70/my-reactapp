@@ -14,7 +14,7 @@ const Users = (props) => {
     // { id: 3, name: 'Masha', photoUrl: 'https://i.ytimg.com/vi/-452p_9ESbM/hqdefault.jpg', followed: true, location: { country: 'Russia', city: 'Saint-Peterburg' } }
     // ])
 }
-    debugger
+    
     let usersArray = props.usersPage.users.map(e => <User key={e.id} e={e} follow={props.follow} unfollow={props.unfollow} />)
     return <div>
         {
