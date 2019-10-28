@@ -19,7 +19,8 @@ const User = (props)=>{
         src ={(props.e.photos.small !== null)?props.e.photos.small:(props.e.name.length>=7)?Girl:anotherGirl}/></NavLink>
         
         {(props.e.followed ===false)?
-        <button onClick ={() => { debugger
+        <button disabled={(props.buttonActive) ? '' :  true} onClick ={() => { 
+            props.buttonFalse()
             axios.post(`https://social-network.samuraijs.com/api/1.0//follow/${props.e.id}`, {},
             {
                 withCredentials: true,
@@ -28,10 +29,10 @@ const User = (props)=>{
                 }
             })
             .then(response => {  
-                debugger
+                
                 if (response.data.resultCode == 0){
                 follow()}
-
+                    props.buttonFalse()
             })
             
             
@@ -40,7 +41,8 @@ const User = (props)=>{
             
             
             Follow</button>:
-        <button onClick ={() => { debugger
+        <button disabled={(props.buttonActive) ? '' :  true} onClick ={() => { debugger
+            props.buttonFalse()
             axios.delete(`https://social-network.samuraijs.com/api/1.0//follow/${props.e.id}`,
             {
                 withCredentials: true,
@@ -49,10 +51,10 @@ const User = (props)=>{
                 }
             })
             .then(response => {  
-                debugger
+                
                 if (response.data.resultCode == 0){
                 unfollow()}
-
+                    props.buttonFalse()
             })
             
             

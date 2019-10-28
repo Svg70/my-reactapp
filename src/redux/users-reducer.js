@@ -5,7 +5,8 @@ let initialstate = {
     totalUsersCount: 0,
     pageSize: 100,
     currentPage: 1,
-    preloader: false
+    preloader: false,
+    buttonActive: true
 }
 
 let usersReducer = (state = initialstate, action) => {
@@ -45,6 +46,10 @@ let usersReducer = (state = initialstate, action) => {
         case ('PRELOADER_SHOW'):
                 
         return{...state,preloader: !state.preloader}
+        case ('BUTTON_FALSE'):  
+        
+        return{...state,buttonActive: !state.buttonActive}
+
         default:
             return state
     }
@@ -68,4 +73,8 @@ export const paggianatorChangedAC = (d) => {
 export const preloaderChangedAC = () =>{
     return{type: 'PRELOADER_SHOW'}
 }
+export const  buttonFalse = () =>{
+    return{type: 'BUTTON_FALSE'}
+}
+
 export default usersReducer

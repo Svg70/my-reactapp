@@ -14,7 +14,7 @@ let Users = (props) => {
             onClick={(e) => { props.onSelectedPageChanged(p) }}>|{p}|</span>)
 
         let usersArray = props.usersPage.users.map(e => <User key={e.id}
-            e={e} follow={props.follow} unfollow={props.unfollow} />)
+            e={e} follow={props.follow} unfollow={props.unfollow} buttonFalse = {props.buttonFalse} buttonActive ={props.usersPage.buttonActive}/>)
         return (<div>
             
             {arr}
