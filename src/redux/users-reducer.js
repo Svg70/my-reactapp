@@ -1,3 +1,7 @@
+import { userAPI } from "../api/api";
+import { stat } from "fs";
+
+
 let initialstate = {
     users: [
 
@@ -6,7 +10,7 @@ let initialstate = {
     pageSize: 100,
     currentPage: 1,
     preloader: false,
-    buttonActive: true
+    buttonActive: [2,3,4]
 }
 
 let usersReducer = (state = initialstate, action) => {
@@ -45,10 +49,14 @@ let usersReducer = (state = initialstate, action) => {
 
         case ('PRELOADER_SHOW'):
                 
-        return{...state,preloader: !state.preloader}
-        case ('BUTTON_FALSE'):  
+        return{...state,preloader: action.isFetching}
+        case ('BUTTON_FALSE'):  {
         
-        return{...state,buttonActive: !state.buttonActive}
+        return{...state,
+            buttonActive: action.isFetching
+        ?[...state.buttonActive, action.userId]
+        : state.buttonActive.filter(id => id !=action.userId)}
+        }
 
         default:
             return state
@@ -68,13 +76,25 @@ export const setTotalCountAC = (totalCount) => {
     return { type: 'SET_TOTAL_USERS_COUNT', totalCount}
 }
 export const paggianatorChangedAC = (d) => {
+    
     return{type:'PAGINATOR_CHANGED', currentPage: d}
 }
-export const preloaderChangedAC = () =>{
-    return{type: 'PRELOADER_SHOW'}
+export const preloaderChangedAC = (isFetching) =>{
+    return{type: 'PRELOADER_SHOW',isFetching}
 }
-export const  buttonFalse = () =>{
-    return{type: 'BUTTON_FALSE'}
+export const  buttonFalse = (isFetching, userId) =>{
+    return{type: 'BUTTON_FALSE', isFetching, userId}
 }
 
+export const getUsersThunkCreator =(currentPage, pageSize)=>{
+    return (dispatch) => {
+    dispatch(preloaderChangedAC(true))   
+    userAPI.getUsers(currentPage, pageSize)
+        .then(response => {
+            dispatch(paggianatorChangedAC(currentPage))
+            dispatch(preloaderChangedAC(false))
+            dispatch(setStateAC(response.data.items))
+            dispatch(setTotalCountAC(response.data.totalCount))
+        })}
+}
 export default usersReducer

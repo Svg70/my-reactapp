@@ -2,36 +2,37 @@ import React from 'react'
 import Users from './Users'
 import { connect } from 'react-redux';
 import * as axios from 'axios'
-import { setStateAC, followAC, unfollowAC, paggianatorChangedAC, setTotalCountAC, preloaderChangedAC, buttonFalse} from '../../../redux/users-reducer';
+import { setStateAC, followAC, unfollowAC, paggianatorChangedAC, setTotalCountAC, preloaderChangedAC, buttonFalse, getUsersThunkCreator} from '../../../redux/users-reducer';
 import Krutilka from './../../../assets/images/preloader.gif'
 import {  userAPI } from '../../../api/api';
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
+        this.props.getUsersThunkCreator(this.props.usersPage.currentPage, this.props.usersPage.pageSize)
+        // this.props.preloaderChanged()
 
-        this.props.preloaderChanged()
-        userAPI.getUsers(this.props.usersPage.currentPage, this.props.usersPage.pageSize)
+        // userAPI.getUsers(this.props.usersPage.currentPage, this.props.usersPage.pageSize)
 
 
-            .then(response => {
+        //     .then(response => {
 
-                this.props.preloaderChanged()
-                this.props.setState(response.data.items)
-                this.props.setTotalCount(response.data.totalCount)
-            })
+        //         this.props.preloaderChanged()
+        //         this.props.setState(response.data.items)
+        //         this.props.setTotalCount(response.data.totalCount)
+        //     })
     }
     onSelectedPageChanged(p) {
+        this.getUsersThunkCreator(p, this.usersPage.pageSize)
+        // this.pagginatorChanged(p)
+        // this.preloaderChanged()
 
-        this.pagginatorChanged(p)
-        this.preloaderChanged()
+        // userAPI.getUsers(p, this.usersPage.pageSize)
+        //     .then(response => {
 
-        userAPI.getUsers(p, this.usersPage.pageSize)
-            .then(response => {
-
-                this.preloaderChanged()
-                this.setState(response.data.items)
-            })
+        //         this.preloaderChanged()
+        //         this.setState(response.data.items)
+        //     })
 
     }
     render() {
@@ -41,11 +42,12 @@ class UsersContainer extends React.Component {
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
                 onSelectedPageChanged={this.onSelectedPageChanged}
-                pagginatorChanged={this.props.pagginatorChanged}
+                paggianatorChanged={this.props.pagginatorChanged}
                 setState={this.props.setState}
-                preloaderChanged={this.props.preloaderChanged}
-                buttonFalse = {this.props.buttonFalse}
-                
+                    preloaderChanged={this.props.preloaderChanged}
+                    buttonFalse = {this.props.buttonFalse}
+                    buttonActive = {this.props.buttonActive}
+                getUsersThunkCreator = {this.props.getUsersThunkCreator}
             />
         </>
     }
@@ -84,9 +86,9 @@ export default connect(mapStateToProps, {
     follow: followAC,
     unfollow: unfollowAC,
     setState: setStateAC,
-    pagginatorChanged: paggianatorChangedAC,
+    paggianatorChanged: paggianatorChangedAC,
     setTotalCount: setTotalCountAC,
     preloaderChanged: preloaderChangedAC,
-    buttonFalse
+    buttonFalse, getUsersThunkCreator
 
 })(UsersContainer)
