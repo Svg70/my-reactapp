@@ -1,4 +1,6 @@
 import * as axios from "axios";
+import { isTSConstructSignatureDeclaration } from "@babel/types";
+
 
 
 const instance = axios.create({
@@ -13,6 +15,19 @@ export const userAPI = {
 
     getUsers(currentPage, pageSize) {
 
-        return axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
+    },
+    follow(userId) {
+        return instance.post(`https://social-network.samuraijs.com/api/1.0//follow/${userId}`, {})
+    },
+    unfollow(userId){
+        return instance.delete(`https://social-network.samuraijs.com/api/1.0//follow/${userId}`)
+    },
+    auth(){
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
+    },
+    profileShow(userId){
+        return instance.get(`https://social-network.samuraijs.com/api/1.0//profile/${userId}`)
     }
+    
 }

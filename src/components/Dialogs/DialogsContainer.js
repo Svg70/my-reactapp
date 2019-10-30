@@ -2,25 +2,9 @@ import React from 'react'
 import Dialogs from './Dialogs'
 import { onMessageTextAreaChangeAC, addMessageAC } from '../../redux/dialogs-reducer';
 import { connect } from 'react-redux';
+import { withAuthRedirect } from '../../hoc/withAuthPedirect';
 
-// const DialogsContainer = (props) => {
-    
-//     let onMessageTextAreaChange = (newMessage) => {
-       
-//         props.dispatch(onMessageTextAreaChangeAC(newMessage))
-//     }
-//     let addMessage = () => {
-//         props.dispatch(addMessageAC())
-//     }
-    
-    
-//     return <div>
-//         <Dialogs onMessageTextAreaChange = {onMessageTextAreaChange} 
-//         addMessage = {addMessage} dialogsPage = {props.dialogsPage}/>
-//     </div>
-// }
-
-
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
 const mapStateToProps = (store) =>{
     return{dialogsPage: store.dialogsPage}
 }
@@ -36,6 +20,6 @@ const mapDispatchToProps = (dispatch) =>{
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
 
 export default DialogsContainer

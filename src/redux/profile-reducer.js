@@ -1,3 +1,5 @@
+import { userAPI } from "../api/api"
+
 let initialstate = {
     posts: [
         { name: 'Петр Петров', id: 1, like: 40, postText: "To be or not to be?" },
@@ -52,6 +54,16 @@ export const onTextAreaChangeAC = (newText) => {
 }
 export const setProfileAC = (data) => {
     return { type: 'SET_PROFILE', response: data}
+}
+
+export const profileShowThunkCreator = (userId) =>{
+    return (dispatch) =>{
+        userAPI.profileShow(userId)
+        .then(response => {  
+                 dispatch(setProfileAC(response.data))
+        }
+    )
+    }
 }
 
 export default profileReducer

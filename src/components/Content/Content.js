@@ -7,7 +7,6 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 
 
-
 const Content = (props) => {
    
     return (

@@ -1,3 +1,5 @@
+import { userAPI } from "../api/api"
+
 let initialstate = {
     id: null,
     email: null,
@@ -9,20 +11,32 @@ let initialstate = {
 let headerReducer = (state = initialstate, action) => {
 
     switch (action.type) {
-        case ('SET_AUTH'):{
-            
-            return {...state, id: action.data.data.id, email: action.data.data.email,
-            login: action.data.data.login, authStatus: true}
+        case ('SET_AUTH'): {
+            debugger
+            return {
+                ...state, id: action.data.data.id, email: action.data.data.email,
+                login: action.data.data.login, authStatus: true
+            }
         }
         default:
-            
-                return state    
+
+            return state
     }
 }
 
 
-export const setAuthAC = (data) => {
-    return { type: 'SET_AUTH', data}
+export const setAuth = (data) => {
+    return { type: 'SET_AUTH', data }
 }
 
+export const authentificationThunkCreator = () => (dispatch) => {
+        userAPI.auth()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setAuth(response.data))
+                }
+            }
+        )
+    
+}
 export default headerReducer

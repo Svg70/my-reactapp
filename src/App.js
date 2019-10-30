@@ -11,6 +11,7 @@ import Users from './components/Content/Users/Users';
 import UsersContainer from './components/Content/Users/UsersContainer';
 import ContentContainer from './components/Content/ContentContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 const App = (props) => {
  
@@ -27,6 +28,7 @@ const App = (props) => {
           <Route path='/dialogs' render = {() => <DialogsContainer /*dialogsPage = {props.store.state.dialogsPage}
           dispatch ={props.dispatch}*//>} />
           <Route  path = '/users' render ={()=><UsersContainer/>}/>
+          <Route  path = '/login' render ={()=><Login/>}/>
         </div>
       </div>
     
