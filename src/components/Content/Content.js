@@ -11,7 +11,8 @@ const Content = (props) => {
    
     return (
         <div>
-            <ProfileInfo photo={props.photo} fullName={props.fullName}/>
+            <ProfileInfo photo={props.photo} fullName={props.fullName} status = {props.status}
+        updateStatus ={props.updateStatus}/>
             <MyPostsContainer /*profilePage ={props.profilePage} dispatch = {props.dispatch}*//>
             
         </div>

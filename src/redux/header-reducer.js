@@ -1,4 +1,4 @@
-import { userAPI } from "../api/api"
+import { authAPI  } from "../api/api"
 
 let initialstate = {
     id: null,
@@ -30,13 +30,15 @@ export const setAuth = (data) => {
 }
 
 export const authentificationThunkCreator = () => (dispatch) => {
-        userAPI.auth()
+    authAPI.auth()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(setAuth(response.data))
                 }
             }
         )
-    
 }
+
+
+
 export default headerReducer

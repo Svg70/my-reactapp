@@ -10,7 +10,7 @@ class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsersThunkCreator(this.props.usersPage.currentPage, this.props.usersPage.pageSize)
     }
-    onSelectedPageChanged(p) {
+    onSelectedPageChanged =(p) =>{
         this.props.getUsersThunkCreator(p, this.props.usersPage.pageSize)
     }
     render() {
@@ -18,7 +18,8 @@ class UsersContainer extends React.Component {
         <>{this.props.usersPage.preloader === true ? <img src={Krutilka} /> : null}
             <Users usersPage={this.props.usersPage}
                 // onSelectedPageChanged={(p) => this.onSelectedPageChanged.bind(this)}
-                onSelectedPageChanged={(p) => this.onSelectedPageChanged(p)}
+                // onSelectedPageChanged={(p) => this.onSelectedPageChanged(p)}
+                onSelectedPageChanged={this.onSelectedPageChanged}
                 preloaderChanged={this.props.preloaderChanged}
                 buttonFalse = {this.props.buttonFalse}
                 getUsersThunkCreator = {this.props.getUsersThunkCreator}
