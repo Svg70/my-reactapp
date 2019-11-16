@@ -12,11 +12,11 @@ const mapStateToProps = (store) =>{
 const mapDispatchToProps = (dispatch) =>{
     
     return{
-        onMessageTextAreaChange:(newMessage) =>{
-            dispatch(onMessageTextAreaChangeAC(newMessage))
-        },
-        addMessage:() =>{
-            dispatch(addMessageAC())
+        // onMessageTextAreaChange:(newMessage) =>{
+        //     dispatch(onMessageTextAreaChangeAC(newMessage))
+        // },
+        addMessage:(value) =>{
+            dispatch(addMessageAC(value))
         }
     }
 }

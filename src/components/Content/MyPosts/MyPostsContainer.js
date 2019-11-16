@@ -24,11 +24,11 @@ import {connect} from 'react-redux';
     }
     const mapDispatchToProps = (dispatch) => {
         return{
-            onTextAreaChange: (newText) => {
-                dispatch(onTextAreaChangeAC(newText))
-        },
-            addPost: () => {
-                dispatch(addPostAC())
+        //     onTextAreaChange: (newText) => {
+        //         dispatch(onTextAreaChangeAC(newText))
+        // },
+            addPost: (value) => {
+                dispatch(addPostAC(value))
             }
         }
     }

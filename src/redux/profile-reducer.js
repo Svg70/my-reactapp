@@ -4,25 +4,27 @@ const SET_USERS_STATUS = 'SET_USERS_STATUS'
 let initialstate = {
     posts: [
         { name: 'Петр Петров', id: 1, like: 40, postText: "To be or not to be?" },
-        { name: 'Иван Иванов', id: 1, like: 2, postText: "To be or not to be?" },
-        { name: 'Дед Мазай ', id: 1, like: 5, postText: "To be or not to be?" },
-        { name: 'Сеня Круглый', id: 1, like: 1, postText: "To be or not to be?" },
-        { name: 'Петр Петров', id: 1, like: 0, postText: "To be or not to be?" },
-        { name: 'Павел Сорокин', id: 1, like: 0, postText: "To be or not to be?" }
+        { name: 'Иван Иванов', id: 2, like: 2, postText: "To be or not to be?" },
+        { name: 'Дед Мазай ', id: 3, like: 5, postText: "To be or not to be?" },
+        { name: 'Сеня Круглый', id: 4, like: 1, postText: "To be or not to be?" },
+        { name: 'Петр Петров', id: 5, like: 0, postText: "To be or not to be?" },
+        { name: 'Павел Сорокин', id: 6, like: 0, postText: "To be or not to be?" }
     ],
     newPostText: "Write your post here!",
     profilePhoto: 'https://i.pinimg.com/originals/8f/b4/13/8fb413f6905230fc7df7317c6ca4a292.jpg',
     fullName: 'Don Korleone',
-    status: ''
+    status: '',
+    postId: 7
 }
 
 
 let profileReducer = (profilePage = initialstate, action) => {
     switch (action.type) {
         case ('ADD_POST'):{
+            let nextPostId = profilePage.postId+1
             let newPost = {
-                id: 1,
-                postText: profilePage.newPostText,
+                id: nextPostId,
+                postText: action.post,
                 name: 'Борис Гребенщиков',
                 like: 0
             }
@@ -30,10 +32,10 @@ let profileReducer = (profilePage = initialstate, action) => {
             profilePageCopy.posts.push(newPost)
             profilePageCopy.newPostText = ""
             return profilePageCopy}
-        case ('TEXT_AREA_CHANGE'):{
-            let profilePageCopy = {...profilePage, posts: profilePage.posts}
-            profilePageCopy.newPostText = action.t
-            return profilePageCopy}
+        // case ('TEXT_AREA_CHANGE'):{
+        //     let profilePageCopy = {...profilePage, posts: profilePage.posts}
+        //     profilePageCopy.newPostText = action.t
+        //     return profilePageCopy}
         case ('SET_PROFILE'):{
             let newProfilePage = {...profilePage}
             newProfilePage.fullName =  action.response.fullName
@@ -43,7 +45,9 @@ let profileReducer = (profilePage = initialstate, action) => {
             // [{...profilePage, profilePhoto: },
             //     {...profilePage, fullName: action.response.fullName}]
         case SET_USERS_STATUS:{
+            debugger
             return{
+                
                 ...profilePage,
                 status: action.status}
         }
@@ -53,12 +57,12 @@ let profileReducer = (profilePage = initialstate, action) => {
     
 }
 
-export const addPostAC = () => {
-    return { type: 'ADD_POST' }
+export const addPostAC = (post) => {
+    return { type: 'ADD_POST',post }
 }
-export const onTextAreaChangeAC = (newText) => {
-    return { type: 'TEXT_AREA_CHANGE', t: newText }
-}
+// export const onTextAreaChangeAC = (newText) => {
+//     return { type: 'TEXT_AREA_CHANGE', t: newText }
+// }
 export const setProfileAC = (data) => {
     return { type: 'SET_PROFILE', response: data}
 }
@@ -83,6 +87,7 @@ export const getStatus = (userId) =>(dispatch) =>{
 
 export const updateStatus = (status) =>(dispatch) =>{
     profileAPI.updateStatus(status).then(response =>{
+        debugger
         if (response.data.resultCode === 0)
         dispatch(setStatus(status))
     })

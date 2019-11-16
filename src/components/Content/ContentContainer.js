@@ -12,11 +12,13 @@ import { compose } from 'redux';
 class ContentContainer extends React.Component{
     componentDidMount(){
         let userId = this.props.match.params.userId
-        
+        if(!userId){
+            userId=4962
+        }
         this.props.profileShow(userId)
         this.props.getStatus(userId)
-        
     }
+    
     
     render(){
         

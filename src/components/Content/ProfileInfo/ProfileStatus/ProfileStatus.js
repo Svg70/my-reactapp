@@ -7,35 +7,52 @@ class ProfileStatus extends React.Component{
         super(props)
         this.state={
             changingStatusMode: true,
-            statusInputValue: this.props.status,
             status: this.props.status
         }
     }
 
+     componentDidUpdate(prevProps, prevState) {
+        
+                if (prevProps.status !== this.props.status) {
+                    this.setState({
+                        status: this.props.status
+                    });
+                }
+        
+                console.log("componentDidUpdate")
+           }
     changingStatusModeFunc = ()=>{
-        console.log(this.state.changingStatusMode)
-         this.setState({changingStatusMode: !this.state.changingStatusMode})
+        
+         this.setState({changingStatusMode: false})
         // console.log(this.state.changingStatusMode)
 
     }
 
+
+    deactivateStatusModeFunc = ()=>{
+        
+        this.setState({changingStatusMode: true})
+        this.props.updateStatus(this.state.status)
+
+   }
     onStatusInputChange = (e) =>{
         
         let text = e.target.value
-        this.setState({statusInputValue: text})
+        this.setState({status: text})
     }
 
-    reWriteStatus = () =>{
-        this.setState({status : this.state.statusInputValue,
-            changingStatusMode: true
-        })
-    }
+    // reWriteStatus = () =>{
+    //     this.setState({
+    //         changingStatusMode: true
+    //     })
+    // }
 
     render(){
-        debugger
+ 
         return (this.state.changingStatusMode
-            ?<div onClick = {this.changingStatusModeFunc}>{this.props.status}</div>
-            :<div><input value ={this.state.statusInputValue} onChange = {this.onStatusInputChange}/><button onClick = {this.reWriteStatus}>Change status</button></div>)
+            ?<div onClick = {this.changingStatusModeFunc}>{this.props.status || "-------"}</div>
+            :<div><input value ={this.state.status} onChange = {this.onStatusInputChange}/>
+            <button onClick = {this.deactivateStatusModeFunc}>Change status</button></div>)
     }
 }
 export default ProfileStatus

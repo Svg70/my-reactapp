@@ -12,7 +12,7 @@ let headerReducer = (state = initialstate, action) => {
 
     switch (action.type) {
         case ('SET_AUTH'): {
-            debugger
+         
             return {
                 ...state, id: action.data.data.id, email: action.data.data.email,
                 login: action.data.data.login, authStatus: true
