@@ -3,6 +3,8 @@ import styles from './Dialogs.module.css';
 import { NavLink } from 'react-router-dom'
 import {Redirect} from "react-router-dom";
 import {reduxForm, Field} from 'redux-form'
+import { Textarea } from '../../common/formControlls';
+import { maxLengthCreator, required } from '../../utils/validator';
 
 
 const DialogsItem = (props) => {
@@ -16,24 +18,13 @@ const Message = (props) => {
 }
 
 const Dialogs = (props) => {
-
+debugger
     let dialogItemsArray = props.dialogsPage.dialogsItems.map(d => <DialogsItem id={d.id} name={d.name} />)
     let messagesArray = props.dialogsPage.messages.map(m => <Message id={m.id} message={m.message} />)
-
-    // let messageTextAreaValue = React.createRef()
-    // let onMessageTextAreaChange = () => {
-        
-    //     let newMessage = messageTextAreaValue.current.value
-    //     props.onMessageTextAreaChange(newMessage)
-    // }
-    // let addMessage = () => {
-    //     props.addMessage()
-    // }
-
     let addNewMessage =(values)=>{
-      
         props.addMessage(values.newMessageBody)
     }
+// changed hoc WithAuthRedirect
 // if(!props.authStatus)return <Redirect to={"/login"}/>
 
     return (
@@ -51,18 +42,19 @@ const Dialogs = (props) => {
     );
 }
 
-
+let maxLength20 = maxLengthCreator(20)
 const AddMesageForm = (props) =>{
     return(
         <form onSubmit={props.handleSubmit}>
         <div>
-                    <Field component = "textarea" name="newMessageBody"
+                    <Field component = {Textarea} 
+                    validate={[required, maxLength20 ]}
+                    name="newMessageBody"
                     placeholder ="Enter your message"
                     />
                     <button>SendMessage!</button>
                 </div>
         </form>
-        //onChange={onMessageTextAreaChange} ref={messageTextAreaValue} value={props.dialogsPage.defaultMessage}
     )
 }
 

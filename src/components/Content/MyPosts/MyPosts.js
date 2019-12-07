@@ -1,12 +1,16 @@
 import React from 'react'
 import styles from './MyPosts.module.css'
 import Post from '../Post/Post'
-import {reduxForm, Field} from 'redux-form'
+import { reduxForm, Field } from 'redux-form'
+import { required, maxLengthCreator } from '../../../utils/validator'
+import { Textarea } from '../../../common/formControlls'
 
 const MyPosts = (props) => {
     // let newPostRef = React.createRef()
-    let addPost = (value) =>{
+    let addPost = (value) => {
+        
         props.addPost(value.newPostBody)
+        
     }
 
     // let onTextAreaChange = () => {
@@ -16,33 +20,35 @@ const MyPosts = (props) => {
 
 
 
-    let postsArray = props.profilePage.posts.map(p => 
-    <Post name = {p.name} id ={p.id} like = {p.like} postText ={p.postText}/>)
+    let postsArray = props.profilePage.posts.map(p =>
+        <Post name={p.name} id={p.id} like={p.like} postText={p.postText} />)
     return <div>
         <div>Мои посты</div>
-            <PostReduxForm onSubmit={addPost}/>
-            {postsArray}
+        <PostReduxForm onSubmit={addPost} />
+        {postsArray}
     </div>
 }
 
-
-const AddPostForm = (props) =>{
-    return(
+let maxLength10 = maxLengthCreator(10)
+const AddPostForm = (props) => {
+    
+    return (
         <form onSubmit={props.handleSubmit}>
-        <div>
-                    <Field component = "textarea" name="newPostBody"
-                    placeholder ="Enter your post"
-                    />
-                    <button>SendPost!</button>
+            <div>
+                <Field component={Textarea} name="newPostBody"
+                    placeholder="Enter your post"
+                validate={[required, maxLength10 ]}
+                />
+                <button>SendPost!</button>
 
-                </div>
+            </div>
         </form>
-     )
+    )
 }
 
 const PostReduxForm = reduxForm({
     form: 'dialogAddMessageForm'
-  })(AddPostForm)
+})(AddPostForm)
 
 
 export default MyPosts

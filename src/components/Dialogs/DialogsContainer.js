@@ -5,23 +5,19 @@ import { connect } from 'react-redux';
 import { withAuthRedirect } from '../../hoc/withAuthPedirect';
 import { compose } from 'redux';
 
-// let AuthRedirectComponent = withAuthRedirect(Dialogs)
-const mapStateToProps = (store) =>{
-    return{dialogsPage: store.dialogsPage}
+
+const mapStateToProps = (store) => {
+    return { dialogsPage: store.dialogsPage }
 }
-const mapDispatchToProps = (dispatch) =>{
-    
-    return{
-        // onMessageTextAreaChange:(newMessage) =>{
-        //     dispatch(onMessageTextAreaChangeAC(newMessage))
-        // },
-        addMessage:(value) =>{
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+
+        addMessage: (value) => {
             dispatch(addMessageAC(value))
         }
     }
 }
-
-// const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),

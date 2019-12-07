@@ -45,7 +45,6 @@ let profileReducer = (profilePage = initialstate, action) => {
             // [{...profilePage, profilePhoto: },
             //     {...profilePage, fullName: action.response.fullName}]
         case SET_USERS_STATUS:{
-            debugger
             return{
                 
                 ...profilePage,
@@ -87,7 +86,7 @@ export const getStatus = (userId) =>(dispatch) =>{
 
 export const updateStatus = (status) =>(dispatch) =>{
     profileAPI.updateStatus(status).then(response =>{
-        debugger
+        
         if (response.data.resultCode === 0)
         dispatch(setStatus(status))
     })

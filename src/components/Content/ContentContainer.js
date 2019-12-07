@@ -13,12 +13,12 @@ class ContentContainer extends React.Component{
     componentDidMount(){
         let userId = this.props.match.params.userId
         if(!userId){
-            userId=4962
+
+            userId=this.props.authorizedUserId
         }
         this.props.profileShow(userId)
         this.props.getStatus(userId)
     }
-    
     
     render(){
         
@@ -30,7 +30,9 @@ class ContentContainer extends React.Component{
 
 const mapStateToProps = (state) => ({
     profilePage: state.profilePage,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth:state.auth.isAuth
 })
 //join this 3 HOC below in ONE Compose
 // let AuthRedirectComponent = withAuthRedirect(ContentContainer)
